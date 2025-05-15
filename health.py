@@ -62,7 +62,6 @@ if not st.session_state.logged_in:
 else:
     # Tabs after login
     # Auto-refresh every 5 seconds (only after login)
-    st_autorefresh(interval=5000, key="datarefresh")
 
     # Tabs after login
     tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
@@ -104,3 +103,4 @@ else:
             st.dataframe(df)
         else:
             st.warning("No data to display.")
+    st_autorefresh(interval=5000, key="datarefresh")
