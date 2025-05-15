@@ -77,23 +77,29 @@ else:
             st.write(f"**Recorded at:** {latest_data['DateTime']}")
         else:
             st.warning("No data found.")
-    
+    #    
     with tab2:
         st.subheader("Health Data Trends")
         df = fetch_data()
         if not df.empty:
             df['DateTime'] = pd.to_datetime(df['DateTime'])
             df = df.sort_values(by='DateTime')
-
-            for column in ['HeartRate', 'Oxygen', 'Temp']:
+    
+            graph_columns = {
+                "HeartRate": "Heart Rate Over Time (bpm)",
+                "Oxygen": "Oxygen Level Over Time (%)",
+                "Temp": "Temperature Over Time (°C)"
+            }
+    
+            for column, label in graph_columns.items():
                 try:
                     df[column] = pd.to_numeric(df[column], errors='coerce')
                     st.line_chart(df.set_index('DateTime')[column], use_container_width=True)
+                    st.caption(label)  # 👈 This puts the label below the chart
                 except Exception as e:
                     st.warning(f"Could not plot {column}: {e}")
         else:
             st.warning("No data available for graph.")
-
     with tab3:
         st.subheader("Complete Health Data")
         df = fetch_data()
