@@ -2,7 +2,7 @@ import streamlit as st
 import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from streamlit_autorefresh import st_autorefresh
 # Database connection details
 db_config = {
     "host": "82.180.143.66",
@@ -56,10 +56,18 @@ if not st.session_state.logged_in:
         if username == VALID_USERNAME and password == VALID_PASSWORD:
             st.session_state.logged_in = True
             st.success("Login successful")
+            
         else:
             st.error("Invalid username or password")
 else:
     # Tabs after login
+    else:
+    # Auto-refresh every 5 seconds (only after login)
+    st_autorefresh(interval=5000, key="datarefresh")
+
+    # Tabs after login
+    tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
+
     tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
 
     with tab1:
