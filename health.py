@@ -61,7 +61,6 @@ if not st.session_state.logged_in:
             st.error("Invalid username or password")
 else:
     # Tabs after login
-    else:
     # Auto-refresh every 5 seconds (only after login)
     st_autorefresh(interval=5000, key="datarefresh")
 
