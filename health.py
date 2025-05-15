@@ -70,13 +70,17 @@ else:
 
     tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
 
-    with tab1:
-        st.subheader("Latest Health Record")
-        latest_data = fetch_latest_data()
-        if latest_data:
-            st.write(pd.DataFrame([latest_data]))
-        else:
-            st.warning("No data found.")
+with tab1:
+    st.subheader("Latest Health Record")
+    latest_data = fetch_latest_data()
+    if latest_data:
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Heart Rate", f"{latest_data['HeartRate']} bpm")
+        col2.metric("Oxygen Level", f"{latest_data['Oxygen']} %")
+        col3.metric("Temperature", f"{latest_data['Temp']} °C")
+        st.write(f"**Recorded at:** {latest_data['DateTime']}")
+    else:
+        st.warning("No data found.")
 
     with tab2:
         st.subheader("Health Data Trends")
