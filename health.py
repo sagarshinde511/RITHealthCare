@@ -66,8 +66,6 @@ else:
     # Tabs after login
     tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
 
-    tab1, tab2, tab3 = st.tabs(["📊 Last Value", "📈 Graphs", "📋 All Data"])
-
     with tab1:
         st.subheader("Latest Health Record")
         latest_data = fetch_latest_data()
@@ -103,4 +101,4 @@ else:
             st.dataframe(df)
         else:
             st.warning("No data to display.")
-    st_autorefresh(interval=5000, key="datarefresh")
+    st_autorefresh(interval=10000, key="datarefresh")
