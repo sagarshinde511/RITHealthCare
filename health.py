@@ -6,9 +6,9 @@ from streamlit_autorefresh import st_autorefresh
 # Database connection details
 db_config = {
     "host": "82.180.143.66",
-    "user": "u263681140_students1",
+    "user": "u263681140_students",
     "password": "testStudents@123",
-    "database": "u263681140_students1"
+    "database": "u263681140_students"
 }
 
 # Hardcoded login credentials (you can expand with a secure auth system)
